@@ -32,10 +32,12 @@ std::string _data_dir;
 
 //__Action Initialization Constructor___________________________________________________________
 ActionInitialization::ActionInitialization(const std::string& generator,
-                                           const std::string& data_dir)
+                                           const std::string& data_dir,
+                                           const bool& debug)
     : G4VUserActionInitialization() {
   _generator = generator;
   _data_dir = data_dir;
+  ActionInitialization::Debug=debug;
 }
 //----------------------------------------------------------------------------------------------
 

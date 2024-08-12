@@ -194,10 +194,10 @@ const auto size = collection->GetSize(); for (std::size_t i = 0; i < column_coun
     const auto hit = dynamic_cast<Hit*>(collection->GetHit(i));
     out[0].push_back(hit->GetDeposit());
     out[1].push_back(hit->GetPosition().t());
-	out[2].push_back(hit->GetCenter1());
-	out[3].push_back(hit->GetCenter2());
-	out[4].push_back(hit->GetBarDirection());
-	out[5].push_back(hit->GetLayerDirection());
+    out[2].push_back(hit->GetCenter1());
+    out[3].push_back(hit->GetCenter2());
+    out[4].push_back(hit->GetBarDirection());
+    out[5].push_back(hit->GetLayerDirection());
     out[6].push_back(name_map(hit->GetChamberID()));
     out[7].push_back(hit->GetPDGEncoding());
     out[8].push_back(hit->GetTrackID());

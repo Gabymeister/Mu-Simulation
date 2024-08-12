@@ -36,6 +36,7 @@ The simulation executable itself comes with several configuration parameters:
 | Bias Muon Nuclear interaction in Earth (for Cosmic and Box geometry) | `NA` | `--bias`        |
 | Turn On Five Body Muon Decays     | `-f` | `--five_muon`       |
 | Non-Random Five Body Decays       | `-n` | `--non_random`      |
+| Debug Mode (write out step files)  | `-D`             | `--debug`            |
 | Quiet Mode            | `-q`             | `--quiet`           |
 | Help                  | `-h`             | `--help`            |
 

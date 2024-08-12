@@ -98,6 +98,7 @@ public:
 
 private:
   const G4ParticleDefinition* _particle;
+  int _event_id;
   int _trackID;
   int _parentID;
   double _center1;

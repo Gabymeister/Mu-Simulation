@@ -212,7 +212,7 @@ enum class DataKeyType { Single, Vector };
 using DataKeyTypeList = std::vector<DataKeyType>;
 static const DataKeyList DefaultDataKeyList{
   "NumHits",
-
+  "G4EventID",
   "Hit_energy", "Hit_time", "Hit_Center1", "Hit_Center2", "Hit_bar_direction",
   "Hit_layer_direction", "Hit_LayerID",
   "Hit_particlePdgId", "Hit_G4TrackId", "Hit_G4ParentTrackId",
@@ -246,7 +246,8 @@ static const DataKeyList DefaultDataKeyList{
 };
 static const DataKeyTypeList DefaultDataKeyTypeList{
   DataKeyType::Single,
-
+  DataKeyType::Single,
+  
   DataKeyType::Vector,
   DataKeyType::Vector,
   DataKeyType::Vector,

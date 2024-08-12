@@ -12,6 +12,8 @@
 #include <G4IntersectionSolid.hh>
 #include <G4UnionSolid.hh>
 #include <G4SubtractionSolid.hh>
+#include <G4RunManager.hh>
+
 #include "TROOT.h"
 #include "TTree.h"
 #include "MuonDataController.hh"
@@ -535,6 +537,8 @@ void Detector::EndOfEvent(G4HCofThisEvent*) {
     }
  
   const auto collection_data = Tracking::ConvertToAnalysis(_hit_collection);
+  const auto event_id = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+
 
   Analysis::ROOT::DataEntryList root_data;
   root_data.reserve(24UL);
@@ -550,6 +554,7 @@ void Detector::EndOfEvent(G4HCofThisEvent*) {
   Analysis::ROOT::DataEntry metadata;
   metadata.reserve(2UL);
   metadata.push_back(collection_data[0UL].size());
+  metadata.push_back(event_id);
   metadata.push_back(gen_particle_data[0UL].size());
   Analysis::ROOT::FillNTuple(DataName, Detector::DataKeyTypes, metadata, root_data);
   if (verboseLevel >= 2 && _hit_collection)

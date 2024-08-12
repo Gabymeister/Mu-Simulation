@@ -36,4 +36,8 @@ G4History*
 /export
 /detector_geo
 
+Digitizer/build/
+digitizer
+
+
 simulation

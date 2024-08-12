@@ -42,12 +42,13 @@ int main(int argc, char* argv[]) {
   option vis_opt     ('v', "vis",      "Visualization",             option::no_arguments);
   option quiet_opt   ('q', "quiet",    "Quiet Mode",                option::no_arguments);
   option thread_opt  ('j', "threads",  "Multi-Threading Mode: Specify Optional number of threads (default: 2)", option::optional_arguments);
+  option debug_opt   ('D', "debug",    "Turn on debug (save step information)", option::no_arguments);
 
   //TODO: pass quiet argument to builder and action initiaization to improve quietness
 
   const auto script_argc = -1 + util::cli::parse(argv,
     {&help_opt, &gen_opt, &det_opt, &shift_opt, &data_opt, &export_opt, &script_opt, &events_opt,
-     &save_all_opt, &cut_save_opt, &bias_opt, &five_body_muon_decay_opt, &non_random_muon_decay_opt, &vis_opt, &quiet_opt, &thread_opt});
+     &save_all_opt, &cut_save_opt, &bias_opt, &five_body_muon_decay_opt, &non_random_muon_decay_opt, &vis_opt, &quiet_opt, &thread_opt, &debug_opt});
 
 
   util::error::exit_when(script_argc && !script_opt.argument,
@@ -131,7 +132,8 @@ int main(int argc, char* argv[]) {
 
   const auto generator = gen_opt.argument ? gen_opt.argument : "basic";
   const auto data_dir = data_opt.argument ? data_opt.argument : "data";
-  run->SetUserInitialization(new ActionInitialization(generator, data_dir));
+  const auto debug = quiet_opt.count==1;
+  run->SetUserInitialization(new ActionInitialization(generator, data_dir, debug));
 
 
   auto vis = new G4VisExecutive("Quiet");

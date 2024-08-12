@@ -41,7 +41,8 @@ namespace MATHUSLA { namespace MU {
 class ActionInitialization : public G4VUserActionInitialization {
 public:
   ActionInitialization(const std::string& generator="",
-                       const std::string& data_dir="");
+                       const std::string& data_dir="",
+                       const bool& debug=false);
   void BuildForMaster() const;
   void Build() const;
   static bool Debug;
@@ -108,6 +109,10 @@ public:
   void UserSteppingAction( const G4Step* aStep);
   static void WriteTree(int);
   static TTree* _step_data;
+  static std::string file_name;
+  static std::string prefix;
+  static bool step_data_valid;
+  // static TFile* f;
 
 };
 
@@ -116,13 +121,20 @@ public:
   static double _step_x;
   static double _step_y;
   static double _step_z;
+  static double _step_x_end;
+  static double _step_y_end;
+  static double _step_z_end;  
   static double _step_px;
   static double _step_py;
   static double _step_pz;
   static double _energy_loss;
   static double _deposit;
   static int _pdg;
+  static int _trackid;
+  static int _trackid_parent;
+  static int _trackid_status;
   static int _material_index;
+  static int _evt_number;
 
   static void Initialize(int id);
 

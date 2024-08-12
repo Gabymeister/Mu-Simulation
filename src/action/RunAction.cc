@@ -113,6 +113,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   if (!G4Threading::IsWorkerThread()) {
     if (_prefix.find("/run") == std::string::npos)
       _prefix = _make_directories(_data_dir) + "/run";
+    StepAction::file_name=_prefix+"_step_data.root";
     _path = _prefix + std::to_string(_run_count) + ".root";
     _event_count = run->GetNumberOfEventToBeProcessed();
   }
@@ -190,7 +191,7 @@ void RunAction::EndOfRunAction(const G4Run*) {
  if (controller->getOn()){
  G4cout<<"Five Body Muon Decays: "<<controller->getMuonDecays()<<G4endl;
  G4cout<<"Events With Five Body Decay: "<<controller->getEventsWithDecay()<<G4endl;
- 
+//  StepAction::f->Close();
 }
 }
 //----------------------------------------------------------------------------------------------
