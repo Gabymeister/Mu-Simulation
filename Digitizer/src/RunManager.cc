@@ -90,9 +90,7 @@ int RunManager::StartTracking()
 
 			TotalEventsProcessed++;
 			_digitizer->clear();
-			std::cout << "Loading Event" << std::endl;
 			TH->LoadEvent();
-			std::cout << "Loaded Event" << std::endl;
 
 			int n_added = 0; //This tracks the number of sim_hits added, needed for setting proper index
 			int n_TH = 0; // Number of sim_hits added from TH
@@ -180,12 +178,6 @@ int RunManager::StartTracking()
 				n_cosmic -= 1;
 			}
 			std::vector<physics::digi_hit *> digi_list = _digitizer->Digitize();
-			if (digi_list.size() == 0) {
-				std::cout << "No digis" << std::endl;
-			}
-			if (_digitizer->hits.size() == 0) {
-				std::cout << "No sim hits" << std::endl;
-			}
 			std::vector<physics::digi_hit*> noise_digis;
 			if(NoiseMaker::run){
 				NoiseMaker* noise = new NoiseMaker(digi_list);
@@ -198,7 +190,6 @@ int RunManager::StartTracking()
         		}
 			TH->ExportDigis(digi_list, _digitizer->seed);
 			TH->Fill();
-			std::cout << "Finished Filling" << std::endl;
 
 			dropped_hits += _digitizer->dropped_hits;
 			floor_wall_hits += _digitizer->floor_wall_hits;
